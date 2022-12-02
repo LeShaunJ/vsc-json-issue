@@ -6,7 +6,7 @@
 <!-- 💡 Instead of creating your report here, use 'Report Issue' from the 'Help' menu in VS Code to pre-fill useful information. -->
 <!-- 🔧 Launch with `code --disable-extensions` to check. -->
 **Does this issue occur when all extensions are disabled?:**
-No, because the issue stems with [`json-language-features`](https://github.com/microsoft/vscode/tree/main/extensions/json-language-features) which is an extention built into this project, and so the report must be made here to the publishers as directed by the guidelines.
+No, because the issue stems with [`json-language-features`](https://github.com/microsoft/vscode/tree/main/extensions/json-language-features) which is an extention built into `vscode`, and so such reports must be made to the publishers as directed by the [guidelines](https://github.com/microsoft/vscode/wiki/Submitting-Bugs-and-Suggestions).
 <!-- 🪓 If you answered No above, use 'Help: Start Extension Bisect' from Command Palette to try to identify the cause. -->
 <!-- 📣 Issues caused by an extension need to be reported directly to the extension publisher. The 'Help > Report Issue' dialog can assist with this. -->
 | **VS Code** | `1.73.1` |
@@ -22,16 +22,16 @@ No, because the issue stems with [`json-language-features`](https://github.com/m
 
 ## Problem
 
-Strict file-matching within `json.schemas: [...]` is ignored under a specific workspace folder's `/.vscode/settings.json` when the tail-end of a mapping's `fileMatch` path is equal to the entirety of another mapping's `fileMatch` path. This causes validation errors on the `.json` file whose schema is being ignored  given that both schemas would likely account for different specifications.
+Strict file-matching within `json.schemas: [...]` is ignored under a specific workspace folder's `/.vscode/settings.json` when the tail-end of a mapping's `fileMatch` path is equal to the entirety of another mapping's `fileMatch` path. This causes validation errors on the `.json` file whose schema is being ignored given that both schema mappings are made to account for different specifications.
 
 ### Steps to Reproduce:
 
 <details><summary><b><code>TL;DR</code></b></summary>
 <p>
 
-> 1. Create and empty workspace.
+> 1. Create an empty workspace.
 > 2. Perform [Step 2](#repr.step.2), below.
-> 3. Clone [this repo](https://github.com/LeShaunJ/vsc-json-issue.git).
+> 3. Clone [this repo](https://github.com/LeShaunJ/vsc-json-issue.git) into the workspace.
 > 4. Perform [Step 6](#repr.step.6) and onward.
 
 </p>
@@ -122,8 +122,10 @@ Strict file-matching within `json.schemas: [...]` is ignored under a specific wo
        ]
    }
    ```
-6. <a id="repr.step.6"></a>Check the `Explore` sidebar and note how `MyProject/container/configs/config.json` is highlighted yellow (_may need to open the file first_).
-7. <a id="repr.step.7"></a>Open the `PROBLEMS` and note the incorrectly validated errors for `MyProject/container/configs/config.json`:
+6. <a id="repr.step.6"></a>Open [`MyProject/container/configs/config.json`](https://github.com/LeShaunJ/vsc-json-issue/blob/main/container/configs/config.json):
+   * Note the validation errors highlighted on each property.
+   * Note how the file is highlighted yellow in the `Explore` sidebar.
+7. <a id="repr.step.7"></a>Open the `PROBLEMS` and note the **second** validation error for [`MyProject/container/configs/config.json`](https://github.com/LeShaunJ/vsc-json-issue/blob/main/container/configs/config.json) (_more on this later_):
    ```
    ˅ {…} config.json MyProject • container/configs ➎
          ⚠️ Missing property "env". [Ln 1, Col 1]
@@ -178,6 +180,7 @@ Strict file-matching within `json.schemas: [...]` is ignored under a specific wo
           }
       }
       ```
+      * Note the how the mappings are instructed to resolve.
 
 ## Diagnosis
 
