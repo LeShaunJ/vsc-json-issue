@@ -6,7 +6,7 @@
 <!-- 💡 Instead of creating your report here, use 'Report Issue' from the 'Help' menu in VS Code to pre-fill useful information. -->
 <!-- 🔧 Launch with `code --disable-extensions` to check. -->
 **Does this issue occur when all extensions are disabled?:**
-No, because the issue stems with [`json-language-features`](https://github.com/microsoft/vscode/tree/main/extensions/json-language-features) which is an extention built into `vscode`, and so such reports must be made to the publishers as directed by the [guidelines](https://github.com/microsoft/vscode/wiki/Submitting-Bugs-and-Suggestions).
+No, but because the issue stems with the [`json-language-features`](https://github.com/microsoft/vscode/tree/main/extensions/json-language-features) extention which is an built into `vscode`, such reports must be made to the extension's publisher as directed by the [guidelines](https://github.com/microsoft/vscode/wiki/Submitting-Bugs-and-Suggestions).
 <!-- 🪓 If you answered No above, use 'Help: Start Extension Bisect' from Command Palette to try to identify the cause. -->
 <!-- 📣 Issues caused by an extension need to be reported directly to the extension publisher. The 'Help > Report Issue' dialog can assist with this. -->
 | **VS Code** | `1.73.1` |
