@@ -195,7 +195,8 @@ Which is fine in terms of globally mapping a schema; however, it means that stri
 ## Solution
 
 * While it is true that `$schema` directly in the `.json` files supersedes the the above, this is insufficient if the `.json` file is used by a 3rd-party module/package/app that does not allow foreign properties.
-* Besides this, the fact that `config.json` tends to be a *go-to* name, the chances of two configuration files for two separate 3rd-party modules/packages/apps clashing is that much higher.
+* Asking the user to simply make unique folder structure is also insufficient, as there may be operational reasons that require a consistant folder structure and config file name across multiple directories/nests within the same project, but whose individual config files follow different schemas.
+* Besides that, there's always a chance that two configuration files required by two separate 3rd-party modules/packages/apps may clash if they follow similar folder structures and file names––in spite of where one is nested in lieu of the other.
 * I believe `fileMatch` paths should make a clear distinction between `directory/file.json` and `/directory/file.json`:
   * A path within `fileMatch` is **relative** if it *does not* start with `/`.
     * Relative `fileMatch` paths are *still* matched as both `/project/directory/file.json` and `/project/*/directory/file.json`
@@ -223,4 +224,4 @@ We simply remove the globalization of paths that start with `/`:
 	}
 ```
 
-Unless there's something I'm missing as to why it was specifically done this way, I don't otherwise see why this cannot be done.
+with this, any cross-pollination is a matter of how the end-user has configured their mappings. Unless there's something I'm missing as to why it was specifically done this way, I don't otherwise see why this cannot be done.
