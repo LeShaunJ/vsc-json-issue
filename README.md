@@ -26,13 +26,16 @@ Strict file-matching within `json.schemas: [...]` is ignored under a specific wo
 
 ### Steps to Reproduce:
 
-> **`TL;DR`**
+<details><summary><b><code>TL;DR</code></b></summary>
+<p>
+
 > 1. Create and empty workspace.
 > 2. Perform [Step 2](#repr.step.2), below.
 > 3. Clone [this repo](https://github.com/LeShaunJ/vsc-json-issue.git).
 > 4. Perform [Step 6](#repr.step.6) and onward.
 
----
+</p>
+</details><br/>
 
 1. Create the following folder structure:
    ```
