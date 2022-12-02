@@ -1,0 +1,5 @@
+{
+    "container_name": "ansible-runner",
+    "image_location": "https://domain.com/images/ansible-runner:2.13",
+    "arch": "amd64"
+}
