@@ -103,7 +103,7 @@ Strict file-matching within `json.schemas: [...]` is ignored under a specific wo
           "arch": "amd64"
       }
       ```
-5. Under `MyProject/.vscode/`, create the [`settings.json`](https://github.com/LeShaunJ/vsc-json-issue/blob/main/.vscode/settings.json) file with the following `json.schema` mappings:
+5. Under [`MyProject/.vscode/`](https://github.com/LeShaunJ/vsc-json-issue/blob/main/.vscode), create the [`settings.json`](https://github.com/LeShaunJ/vsc-json-issue/blob/main/.vscode/settings.json) file with the following `json.schema` mappings:
    ```json
    {
        "json.schemas": [
