@@ -53,8 +53,8 @@ Strict file-matching within `json.schemas: [...]` is ignored under a specific wo
          "json.trace.server": "verbose"
      }
      ```
-3. Under `MyProject/configs/`:
-   1. Create the file, `config.schema.json`:
+3. Under [`MyProject/configs/`](https://github.com/LeShaunJ/vsc-json-issue/blob/main/configs):
+   1. Create the file, [`config.schema.json`](https://github.com/LeShaunJ/vsc-json-issue/blob/main/configs/config.schema.json):
       ```json
       {
           "$schema": "http://json-schema.org/draft-07/schema",
@@ -71,14 +71,14 @@ Strict file-matching within `json.schemas: [...]` is ignored under a specific wo
           "additionalProperties": false
       }
       ```
-   2. Create the file, `config.json`:
+   2. Create the file, [`config.json`](https://github.com/LeShaunJ/vsc-json-issue/blob/main/configs/config.json):
       ```json
       {
           "env": "staging"
       }
       ```
-4. Under `MyProject/container/configs/`:
-   1. Create the file, `config.schema.json`:
+4. Under [`MyProject/container/configs/`](https://github.com/LeShaunJ/vsc-json-issue/blob/main/container/configs):
+   1. Create the file, [`config.schema.json`](https://github.com/LeShaunJ/vsc-json-issue/blob/main/container/configs/config.schema.json):
       ```json
       {
           "$schema": "http://json-schema.org/draft-07/schema",
@@ -95,7 +95,7 @@ Strict file-matching within `json.schemas: [...]` is ignored under a specific wo
           "additionalProperties": true
       }
       ```
-   2. Create the file, `config.json`:
+   2. Create the file, [`config.json`](https://github.com/LeShaunJ/vsc-json-issue/blob/main/container/configs/config.json):
       ```json
       {
           "container_name": "ansible-runner",
@@ -103,7 +103,7 @@ Strict file-matching within `json.schemas: [...]` is ignored under a specific wo
           "arch": "amd64"
       }
       ```
-5. Under `MyProject/.vscode/`, create the `settings.json` file with the following `json.schema` mappings:
+5. Under `MyProject/.vscode/`, create the [`settings.json`](https://github.com/LeShaunJ/vsc-json-issue/blob/main/.vscode/settings.json) file with the following `json.schema` mappings:
    ```json
    {
        "json.schemas": [
