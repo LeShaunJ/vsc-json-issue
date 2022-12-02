@@ -6,7 +6,7 @@
 <!-- 💡 Instead of creating your report here, use 'Report Issue' from the 'Help' menu in VS Code to pre-fill useful information. -->
 <!-- 🔧 Launch with `code --disable-extensions` to check. -->
 **Does this issue occur when all extensions are disabled?:**
-No, because the issue stems with [`json-language-features`](https://github.com/microsoft/vscode/tree/main/extensions/json-language-features) which is an extention built into this project, and so the report must be made here to the publishers as directed by the guidelines
+No, because the issue stems with [`json-language-features`](https://github.com/microsoft/vscode/tree/main/extensions/json-language-features) which is an extention built into this project, and so the report must be made here to the publishers as directed by the guidelines.
 <!-- 🪓 If you answered No above, use 'Help: Start Extension Bisect' from Command Palette to try to identify the cause. -->
 <!-- 📣 Issues caused by an extension need to be reported directly to the extension publisher. The 'Help > Report Issue' dialog can assist with this. -->
 | **VS Code** | `1.73.1` |
@@ -26,14 +26,13 @@ Strict file-matching within `json.schemas: [...]` is ignored under a specific wo
 
 ### Steps to Reproduce:
 
-1. Set `[Workspace ]Settings > Extensions > JSON > Trace: Server` to `verbose`:
-   * In `MyWorkspace/MyWorkspace.code-workspace`:
-     ```json
-     {
-         "json.trace.server": "verbose"
-     }
-     ```
-2. Create the following folder structure:
+> **`TL;DR`**
+> 1. Create and empty workspace.
+> 2. Perform [Step 2](#repr.step.2), below.
+> 3. Clone [this repo](https://github.com/LeShaunJ/vsc-json-issue.git).
+> 4. Perform [Step 6](#repr.step.6) and onward.
+
+1. Create the following folder structure:
    ```
    MyWorkspace/
    └─ MyProject/
@@ -42,6 +41,13 @@ Strict file-matching within `json.schemas: [...]` is ignored under a specific wo
       └─ container/
          └─ configs/
    ```
+2. <a id="repr.step.2"></a>Set `[Workspace ]Settings > Extensions > JSON > Trace: Server` to `verbose`:
+   * In `MyWorkspace/MyWorkspace.code-workspace`:
+     ```json
+     {
+         "json.trace.server": "verbose"
+     }
+     ```
 3. Under `MyProject/configs/`:
    1. Create the file, `config.schema.json`:
       ```json
@@ -111,7 +117,7 @@ Strict file-matching within `json.schemas: [...]` is ignored under a specific wo
        ]
    }
    ```
-6. Check the `Explore` sidebar and note how `MyProject/container/configs/config.json` is highlighted yellow (_may need to open the file first_).
+6. <a id="repr.step.6"></a>Check the `Explore` sidebar and note how `MyProject/container/configs/config.json` is highlighted yellow (_may need to open the file first_).
 7. <a id="repr.step.7"></a>Open the `PROBLEMS` and note the incorrectly validated errors for `MyProject/container/configs/config.json`:
    ```
    ˅ {…} config.json MyProject • container/configs ➎
