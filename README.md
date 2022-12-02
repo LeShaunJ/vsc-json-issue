@@ -1,4 +1,3 @@
-# json.schema resolution ignores a mapping's "fileMatch" if the tail-end of its path mirrors the entirety of another mapping's path
 <!-- ⚠️⚠️ Do Not Delete This! bug_report_template ⚠️⚠️ -->
 <!-- Please read our Rules of Conduct: https://opensource.microsoft.com/codeofconduct/ -->
 <!-- 🕮 Read our guide about submitting issues: https://github.com/microsoft/vscode/wiki/Submitting-Bugs-and-Suggestions -->
