@@ -32,6 +32,8 @@ Strict file-matching within `json.schemas: [...]` is ignored under a specific wo
 > 3. Clone [this repo](https://github.com/LeShaunJ/vsc-json-issue.git).
 > 4. Perform [Step 6](#repr.step.6) and onward.
 
+---
+
 1. Create the following folder structure:
    ```
    MyWorkspace/
@@ -129,7 +131,7 @@ Strict file-matching within `json.schemas: [...]` is ignored under a specific wo
    ```
 8. Open the `OUTPUT` tab:
    1. In the log source drop down, select `JSON Language Server`.
-   2. <kbd>ctrl</kbd>+<kbd>f</kbd> (or <kbd>⌘</kbd>+<kbd>f</kbd>) to search:
+   2. <kbd>ctrl</kbd>+<kbd>f</kbd> (_or <kbd>⌘</kbd>+<kbd>f</kbd>_) to search:
       1. Select the <kbd>.*</kbd> icon to enable `regex`.
       2. Search for, `\/\*\/config\/config\.json"`.
    3. Cycle from the last search-match until you find the following (_file-path roots are truncated as they'd differ depending on the reproduction location_):
@@ -176,13 +178,13 @@ Strict file-matching within `json.schemas: [...]` is ignored under a specific wo
 
 ## Diagnosis
 
-This is because any path with `configs/config.json` is instructed to map to `/config/config.schema.json`. I've narrowed the greedy nature of this situation to way the mappings are globalized:
+This is because any path with `configs/config.json` is instructed to map to [`/configs/config.schema.json`](https://github.com/LeShaunJ/vsc-json-issue/blob/main/configs/config.schema.json). I've narrowed the greedy nature of this situation to way the mappings are globalized:
 
 https://github.com/microsoft/vscode/blob/3c83412a4fc8d316aefb2385850564d7a21dc9f6/extensions/json-language-features/client/src/jsonClient.ts#L521-L527
 
 Which is fine in terms of globally mapping a schema; however, it means that stricter mappings are ignored if the tail-end of one mapping's `fileMatch` path equal to the entirety of another mapping's `fileMatch` path.
 
-Surely, this is *mostly* by design, but if you recall `PROBLEMS` that are raised ([Reproduction Step 7](#repr.step.7)), the validation is in fact validating against *both* schemas––as if one schema is the *parent* of the other. This is confirmed by the appearance of, `Missing property "public_key". [Ln 1, Col 1]`, which stems from a `requirement` in `MyProject/container/configs/config.schema.json` that was *intentionally* left out of `MyProject/container/configs/config.json` to prove the claim. What we're seeing is what one can only assume is **unintentional inheritance**, as this quirk would have otherwise been [explained](https://code.visualstudio.com/docs/languages/json) in some detail or another.
+Surely, this is *mostly* by design, but if you recall `PROBLEMS` that are raised ([Reproduction Step 7](#repr.step.7)), the validation is in fact validating against *both* schemas––as if one schema is the *parent* of the other. This is confirmed by the appearance of, `Missing property "public_key". [Ln 1, Col 1]`, which stems from a [`requirement`](https://github.com/LeShaunJ/vsc-json-issue/blob/25b468beb5920b20560db68a5811807f4089d31c/container/configs/config.schema.json#L12) in [`container/configs/config.schema.json`](https://github.com/LeShaunJ/vsc-json-issue/blob/main/container/configs/config.schema.json) that was *intentionally* left out of [`container/configs/config.json`](https://github.com/LeShaunJ/vsc-json-issue/blob/main/container/configs/config.json) to prove the claim as a **bug**. What we're seeing is what one can only assume is **unintentional inheritance**, as this quirk would have otherwise been [explained](https://code.visualstudio.com/docs/languages/json) in some detail or another.
 
 ## Solution
 
