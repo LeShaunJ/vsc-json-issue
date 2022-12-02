@@ -125,7 +125,7 @@ Strict file-matching within `json.schemas: [...]` is ignored under a specific wo
 6. <a id="repr.step.6"></a>Open [`MyProject/container/configs/config.json`](https://github.com/LeShaunJ/vsc-json-issue/blob/main/container/configs/config.json):
    * Note the validation errors highlighted on each property.
    * Note how the file is highlighted yellow in the `Explore` sidebar.
-7. <a id="repr.step.7"></a>Open the `PROBLEMS` and note the **second** validation error for [`MyProject/container/configs/config.json`](https://github.com/LeShaunJ/vsc-json-issue/blob/main/container/configs/config.json) (_more on this later_):
+7. <a id="repr.step.7"></a>Open the `PROBLEMS` and note the **second** validation error for [`MyProject/container/configs/config.json`](https://github.com/LeShaunJ/vsc-json-issue/blob/main/container/configs/config.json) (_more on this [later](#diagnosis.bug)_):
    ```
    ˅ {…} config.json MyProject • container/configs ➎
          ⚠️ Missing property "env". [Ln 1, Col 1]
@@ -190,7 +190,7 @@ https://github.com/microsoft/vscode/blob/3c83412a4fc8d316aefb2385850564d7a21dc9f
 
 Which is fine in terms of globally mapping a schema; however, it means that stricter mappings are ignored if the tail-end of one mapping's `fileMatch` path equal to the entirety of another mapping's `fileMatch` path.
 
-Surely, this is *mostly* by design, but if you recall `PROBLEMS` that are raised ([Reproduction Step 7](#repr.step.7)), the validation is in fact validating against *both* schemas––as if one schema is the *parent* of the other. This is confirmed by the appearance of, `Missing property "public_key". [Ln 1, Col 1]`, which stems from a [`requirement`](https://github.com/LeShaunJ/vsc-json-issue/blob/25b468beb5920b20560db68a5811807f4089d31c/container/configs/config.schema.json#L12) in [`container/configs/config.schema.json`](https://github.com/LeShaunJ/vsc-json-issue/blob/main/container/configs/config.schema.json) that was *intentionally* left out of [`container/configs/config.json`](https://github.com/LeShaunJ/vsc-json-issue/blob/main/container/configs/config.json) to prove the claim as a **bug**. What we're seeing is what one can only assume is **unintentional inheritance**, as this quirk would have otherwise been [explained](https://code.visualstudio.com/docs/languages/json) in some detail or another.
+<a id="diagnosis.bug"></a>Surely, this is *mostly* by design, but if you recall `PROBLEMS` that are raised ([Reproduction Step 7](#repr.step.7)), the validation is in fact validating against *both* schemas––as if one schema is the *parent* of the other. This is confirmed by the appearance of, `Missing property "public_key". [Ln 1, Col 1]`, which stems from a [`requirement`](https://github.com/LeShaunJ/vsc-json-issue/blob/25b468beb5920b20560db68a5811807f4089d31c/container/configs/config.schema.json#L12) in [`container/configs/config.schema.json`](https://github.com/LeShaunJ/vsc-json-issue/blob/main/container/configs/config.schema.json) that was *intentionally* left out of [`container/configs/config.json`](https://github.com/LeShaunJ/vsc-json-issue/blob/main/container/configs/config.json) to prove the claim as a **bug**. What we're seeing is what one can only assume is **unintentional inheritance**, as this quirk would have otherwise been [explained](https://code.visualstudio.com/docs/languages/json) in some detail or another.
 
 ## Solution
 
