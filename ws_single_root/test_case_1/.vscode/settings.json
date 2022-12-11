@@ -1,0 +1,16 @@
+{
+    "json.schemas": [
+        {
+            "fileMatch": [
+                "configs/config.json",
+            ],
+            "url": "/configs/config.schema.json"
+        },
+        {
+            "fileMatch": [
+                "container/configs/config.json",
+            ],
+            "url": "/container/configs/config.schema.json"
+        }
+    ]
+}

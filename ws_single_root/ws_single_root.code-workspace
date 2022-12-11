@@ -1,0 +1,10 @@
+{
+	"folders": [
+		{
+			"path": "test_case_1"
+		}
+	],
+	"settings": {
+		"json.trace.server": "verbose"
+	}
+}
